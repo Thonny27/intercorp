@@ -25,24 +25,6 @@ public class ClienteController {
 	public ClienteList getClientes(){
 		ClienteList clienteList = clienteService.getClienteList();
 
-		int suma=0;
-		double prom;
-		int edad;
-		double resul=0;
-
-		for(int i=0 ; i<clienteList.getPersona().size();i++){
-			suma=suma+clienteList.getPersona().get(i).getEdad();
-		}
-		prom=suma/clienteList.getPersona().size();
-		clienteList.setEdadPromedio(prom);
-
-		for(int i=0 ; i<clienteList.getPersona().size();i++){
-			edad=clienteList.getPersona().get(i).getEdad();
-			resul =(int) Math.pow(edad-prom, 2);
-
-		}
-
-		clienteList.setDesviacionStandar(resul);
 
 		return clienteList;
 	}
