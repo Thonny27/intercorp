@@ -1,0 +1,38 @@
+management:
+  security:
+    enabled: false
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      cors:
+        allow-credentials: true
+        allowed-headers: "*"
+        allowed-methods: "*"
+        allowed-origins: "*"
+
+server:
+  port: 8080
+  servlet:
+    context-path: /gamarra
+spring:
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3307/intercorp?useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: password
+  jackson:
+    time-zone: America/Lima
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: es_PE
+    default-property-inclusion: non_null
+
+#mybatis:
+#  mapper-locations: classpath:/mapper/*.xml
+
+
+
+
+

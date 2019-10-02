@@ -12,26 +12,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication
 public class DcomprasApplication extends SpringBootServletInitializer {
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return  builder.sources(DcomprasApplication.class);
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(DcomprasApplication.class, args);
 
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurerAdapter() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/*").allowedMethods("POST", "GET", "PUT", "DELETE", "HEAD").allowedOrigins("")
-						.allowCredentials(false);
-			}
-		};
-	}
 
 
 }
