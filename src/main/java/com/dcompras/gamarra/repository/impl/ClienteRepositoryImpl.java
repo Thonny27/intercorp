@@ -34,4 +34,40 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
         return clientes;
     }
+
+    @Override
+    public void insert(Cliente cliente) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate.getDataSource())
+                .withProcedureName("cliente__insert");
+
+        Map<String,Object> parameters=new HashMap<>();
+        parameters.put("p_nombre",cliente.getNombre());
+        parameters.put("p_apellido",cliente.getApellido());
+        parameters.put("p_edad",cliente.getEdad());
+        Map<String,Object> result= simpleJdbcCall.execute(parameters);
+    }
+
+    @Override
+    public void delete(int id) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate.getDataSource())
+                .withProcedureName("cliente__delete");
+
+        Map<String,Object> parameters=new HashMap<>();
+        parameters.put("p_id",id);
+        Map<String,Object> result= simpleJdbcCall.execute(parameters);
+    }
+
+    @Override
+    public void update(Cliente cliente) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate.getDataSource())
+                .withProcedureName("cliente__update");
+
+        Map<String,Object> parameters=new HashMap<>();
+        parameters.put("p_id",cliente.getId());
+        parameters.put("p_nombre",cliente.getNombre());
+        parameters.put("p_apellido",cliente.getApellido());
+        parameters.put("p_edad",cliente.getEdad());
+        Map<String,Object> result= simpleJdbcCall.execute(parameters);
+    }
+
 }

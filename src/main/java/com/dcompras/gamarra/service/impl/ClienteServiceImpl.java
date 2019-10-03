@@ -18,4 +18,19 @@ public class ClienteServiceImpl implements ClienteService {
     public List<Cliente> findAll() {
         return clienteRepository.findAll();
     }
+
+    @Override
+    public void insert(Cliente cliente) {
+        clienteRepository.insert(cliente);
+    }
+
+    @Override
+    public void delete(int id) {
+        clienteRepository.delete(id);
+    }
+
+    @Override
+    public void update(Cliente cliente) {
+        clienteRepository.update(cliente);
+    }
 }
