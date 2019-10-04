@@ -36,6 +36,21 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
+    public List<Cliente> findById(int id) {
+        SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate.getDataSource())
+                .withProcedureName("cliente__find_by_id")
+                .returningResultSet("result",new ClienteMapper());
+
+        Map<String,Object> parameters=new HashMap<>();
+        parameters.put("p_id",id);
+        Map<String,Object> result= simpleJdbcCall.execute(parameters);
+
+        List<Cliente> clientes = (List<Cliente>) result.get("result");
+
+        return clientes;
+    }
+
+    @Override
     public void insert(Cliente cliente) {
         SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate.getDataSource())
                 .withProcedureName("cliente__insert");

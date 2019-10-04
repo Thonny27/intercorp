@@ -1,17 +1,3 @@
-management:
-  security:
-    enabled: false
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      cors:
-        allow-credentials: true
-        allowed-headers: "*"
-        allowed-methods: "*"
-        allowed-origins: "*"
-
 server:
   port: 8080
   servlet:

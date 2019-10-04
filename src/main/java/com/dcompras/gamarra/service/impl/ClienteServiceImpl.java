@@ -20,6 +20,11 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
+    public List<Cliente> findById(int id) {
+        return clienteRepository.findById(id);
+    }
+
+    @Override
     public void insert(Cliente cliente) {
         clienteRepository.insert(cliente);
     }
