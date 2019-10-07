@@ -20,7 +20,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public List<Cliente> findById(int id) {
+    public Cliente findById(int id) {
         return clienteRepository.findById(id);
     }
 

@@ -36,7 +36,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
-    public List<Cliente> findById(int id) {
+    public Cliente findById(int id) {
         SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplate.getDataSource())
                 .withProcedureName("cliente__find_by_id")
                 .returningResultSet("result",new ClienteMapper());
@@ -45,9 +45,12 @@ public class ClienteRepositoryImpl implements ClienteRepository {
         parameters.put("p_id",id);
         Map<String,Object> result= simpleJdbcCall.execute(parameters);
 
-        List<Cliente> clientes = (List<Cliente>) result.get("result");
+        List<Cliente> cliente = (List<Cliente>) result.get("result");
+        if (cliente != null && !cliente.isEmpty()) {
+            return cliente.get(0);
+        }
 
-        return clientes;
+        return null;
     }
 
     @Override
@@ -59,6 +62,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
         parameters.put("p_nombre",cliente.getNombre());
         parameters.put("p_apellido",cliente.getApellido());
         parameters.put("p_edad",cliente.getEdad());
+        parameters.put("p_foto",cliente.getFoto());
         Map<String,Object> result= simpleJdbcCall.execute(parameters);
     }
 
@@ -82,6 +86,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
         parameters.put("p_nombre",cliente.getNombre());
         parameters.put("p_apellido",cliente.getApellido());
         parameters.put("p_edad",cliente.getEdad());
+        parameters.put("p_foto",cliente.getFoto());
         Map<String,Object> result= simpleJdbcCall.execute(parameters);
     }
 

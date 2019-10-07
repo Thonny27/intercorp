@@ -3,5 +3,6 @@ CREATE TABLE `cliente` (
   `nombre` varchar (50) NOT NULL,
   `apellido` varchar(50) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
+  `foto` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
