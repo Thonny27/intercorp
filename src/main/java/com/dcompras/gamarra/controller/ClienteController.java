@@ -63,11 +63,11 @@ public class ClienteController {
 			return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
-		return new ResponseEntity<>("Guardado Correctamente ...",HttpStatus.CREATED);
+		return new ResponseEntity<>(cliente,HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("{id}")
-	public String delete(@PathVariable int id){
+	public ResponseEntity<?> delete(@PathVariable int id){
 
 		Cliente cliente = clienteService.findById(id);
 		String fotoAnterio=cliente.getFoto();
@@ -79,13 +79,13 @@ public class ClienteController {
 			}
 		}
 		clienteService.delete(id);
-		return "Eliminado Correctamente";
+		return new ResponseEntity<>(cliente,HttpStatus.OK);
 	}
 
-	@PutMapping("{id}")
-	public String update(@PathVariable int id ,@RequestBody Cliente cliente){
+	@PutMapping("update/{id}")
+	public ResponseEntity<?> update(@PathVariable int id ,@RequestBody Cliente cliente){
 		clienteService.update(cliente);
-		return "Actualizado Correctamente";
+		return new ResponseEntity<>(cliente,HttpStatus.OK);
 	}
 
 	@PostMapping("cliente/upload")
